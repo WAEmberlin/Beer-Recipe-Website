@@ -22,7 +22,7 @@
                 <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
             </div>
             <div>
-                <button class="btn btn-outline-success" type="submit" value="Submit" name="but_submit" id="but_submit">Submit</button>
+                <button class="btn btn-outline-success" type="submit" value="Submit" name="submitBtn" id="submitBtn">Submit</button>
                 <a class="btn btn-outline-success" href="newAccount.php" style="float: right;">Create New Account</a>
             </div>                     
         </div>

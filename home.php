@@ -1,6 +1,5 @@
 <?php
 include "config.php";
-
 // Check user login or not
 if(!isset($_SESSION['uname'])){
     header('Location: index.php');
@@ -12,6 +11,7 @@ if(isset($_POST['but_logout'])){
     header('Location: index.php');
 }
 ?>
+
 <!doctype html>
 <html>
     <head>
@@ -21,7 +21,54 @@ if(isset($_POST['but_logout'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">    
-</head>
+<?php 
+$error_message = "";$success_message = "";
+
+// Add New Recipe
+if(isset($_POST['btnAddRecipe'])){
+   $rName = trim($_POST['rName']);
+   $Style = trim($_POST['Style']); 
+   $Abv = trim($_POST['Abv']);
+   $Ibu = trim($_POST['Ibu']);
+   $BrewerNames = trim($_POST['BrewerNames']);
+   $Notes = trim($_POST['Notes']);
+
+   $isValid = true;
+
+   // Check if fields are empty or not
+   if($rName == '' || $Style == '' || $Abv == '' || $Ibu == '' || $BrewerNames == '' || $Notes == ''){
+     $isValid = false;
+     $error_message = "Please fill all fields.";
+   }
+
+   if($isValid){
+
+     // Check if recipe name already exists
+     $stmt = $con->prepare("SELECT * FROM recipes WHERE rName = ?");
+     $stmt->bind_param("s", $rName);
+     $stmt->execute();
+     $result = $stmt->get_result();
+     $stmt->close();
+     if($result->num_rows > 0){
+       $isValid = false;
+       $error_message = "Recipe name is already existed.";
+     }
+
+   }
+
+   // Insert records
+   if($isValid){
+     $insertSQL = "INSERT INTO recipes (rName,Style,Abv,Ibu,BrewerNames,Notes) values(?,?,?,?,?,?)";
+     $stmt = $con->prepare($insertSQL);
+     $stmt->bind_param("ssssss",$rName,$Style,$Abv,$Ibu,$BrewerNames,$Notes);
+     $stmt->execute();
+     $stmt->close();
+
+     $success_message = "Recipe created successfully.";
+   }
+}
+?>
+  </head>
 <body>
     <!-- NavBar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,6 +111,69 @@ if(isset($_POST['but_logout'])){
 </nav>
 <!-- NavBar End -->
 
+<!-- Body Start -->
+
+<form method='post' action=''>
+    <?php 
+    // Display Error message
+    if(!empty($error_message)){
+    ?>
+    <div class="alert alert-danger">
+      <strong>Error!</strong> <?= $error_message ?>
+    </div>
+
+    <?php
+    }
+    ?>
+
+    <?php 
+    // Display Success message
+    if(!empty($success_message)){
+    ?>
+    <div class="alert alert-success">
+      <strong>Success!</strong> <?= $success_message ?>
+    </div>
+
+    <?php
+    }
+    ?>
+
+<div class="form-group">
+      <label for="rName">Recipe Name:</label>
+      <input type="text" class="form-control" name="rName" id="rName" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="Style">Style:</label>
+      <input type="text" class="form-control" name="Style" id="Style" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="Abv">ABV Percentage:</label>
+      <input type="text" class="form-control" name="Abv" id="Abv" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="Ibu">IBU's:</label>
+      <input type="text" class="form-control" name="Ibu" id="Ibu" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="BrewerNames">Brewer Names:</label>
+      <input type="text" class="form-control" name="BrewerNames" id="BrewerNames" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="Notes">Notes:</label>
+      <input type="text" class="form-control" name="Notes" id="Notes" required="required" maxlength="80">
+    </div>
+<br>
+    <button type="submit" name="btnAddRecipe" class="btn btn-outline-success">Submit</button>
+  </form>
+</div>
+</div>
+    <a href="home.php">Back to Home Page</a>
+</div>
+
+<!-- Body End -->
+
+
+<!-- Footer Start -->
 <footer>
     <!-- Grid container -->
   <div class="container p-4 pb-0 text-center"><hr>

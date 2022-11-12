@@ -14,14 +14,15 @@ $error_message = "";$success_message = "";
 // Register user
 if(isset($_POST['btnsignup'])){
    $username = trim($_POST['username']);
-   $name = trim($_POST['name']); 
+   $fName = trim($_POST['fName']); 
+   $lName = trim($_POST['lName']);
    $password = trim($_POST['password']);
    $confirmpassword = trim($_POST['confirmpassword']);
 
    $isValid = true;
 
    // Check if fields are empty or not
-   if($username == '' || $name == '' || $password == '' || $confirmpassword == ''){
+   if($username == '' || $fName == '' || $lName == '' || $password == '' || $confirmpassword == ''){
      $isValid = false;
      $error_message = "Please fill all fields.";
    }
@@ -49,9 +50,9 @@ if(isset($_POST['btnsignup'])){
 
    // Insert records
    if($isValid){
-     $insertSQL = "INSERT INTO users (username,name,password) values(?,?,?)";
+     $insertSQL = "INSERT INTO users (username,fName,lName,password) values(?,?,?,?)";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("sss",$username,$name,$password);
+     $stmt->bind_param("ssss",$username,$fName,$lName,$password);
      $stmt->execute();
      $stmt->close();
 
@@ -100,8 +101,12 @@ if(isset($_POST['btnsignup'])){
       <input type="text" class="form-control" name="username" id="username" required="required" maxlength="80">
     </div>
     <div class="form-group">
-      <label for="name">First Name:</label>
-      <input type="text" class="form-control" name="name" id="name" required="required" maxlength="80">
+      <label for="fName">First Name:</label>
+      <input type="text" class="form-control" name="fName" id="fName" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
+      <label for="lName">Last Name:</label>
+      <input type="text" class="form-control" name="lName" id="lName" required="required" maxlength="80">
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
