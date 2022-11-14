@@ -19,7 +19,7 @@
                 <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
             </div>
             <div>
-                <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
+                <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password"/>
             </div>
             <div>
                 <button class="btn btn-outline-success" type="submit" value="Submit" name="submitBtn" id="submitBtn">Submit</button>

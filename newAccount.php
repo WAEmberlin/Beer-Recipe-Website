@@ -1,5 +1,5 @@
 <?php 
-include "config.php";
+include "submit.php";
 ?>
 <html>
     <head>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2022 at 03:56 AM
+-- Generation Time: Nov 14, 2022 at 05:47 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,16 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `recipes` (
-  `Id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(80) NOT NULL,
   `rName` text NOT NULL,
   `Style` text NOT NULL,
-  `Abv` int(4) NOT NULL,
+  `Abv` float NOT NULL,
   `Ibu` int(3) NOT NULL,
   `BrewerNames` text NOT NULL,
   `Notes` text NOT NULL,
   `Date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recipes`
+--
+
+INSERT INTO `recipes` (`id`, `username`, `rName`, `Style`, `Abv`, `Ibu`, `BrewerNames`, `Notes`, `Date`) VALUES
+(1, 'wemberlin', 'Buffalo Wheat', 'American Wheat Ale', 6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-11'),
+(2, 'aemberlin', 'Buffalo Wheat 2', 'American Wheat Ale', 5.6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-12'),
+(3, 'wemberlin', 'Pale Buffalo', 'American Pale Ale', 7.6, 44, 'Austin Emberlin and John Johnson', 'Crushable Summertime Beer', '2022-11-13');
 
 -- --------------------------------------------------------
 
@@ -48,7 +57,8 @@ CREATE TABLE `recipes` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(80) NOT NULL,
-  `name` varchar(80) NOT NULL,
+  `fName` varchar(80) NOT NULL,
+  `lName` varchar(80) NOT NULL,
   `password` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -56,9 +66,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `name`, `password`) VALUES
-(1, 'aemberlin', 'Austin', 'Beer'),
-(2, 'wemberlin', 'Wesley', 'Taco');
+INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `password`) VALUES
+(1, 'aemberlin', 'Austin', 'Emberlin', '*E2837CAF6D0AE8287D882C3EA6192E56FD1DAD1C'),
+(2, 'wemberlin', 'Wesley', 'Emberlin', '*DF50B75CB48401512E378AAEB45284BF3A792338'),
+(4, 'BRoss', 'Bob', 'Ross', '*86CE1C082FFC4C2CC7D5D9ACF2C767370865FE9E'),
+(5, 'John', 'John', 'John', '*F1B33BB9B4E671BFAC0D002725ADF9E504626745');
 
 --
 -- Indexes for dumped tables
@@ -68,8 +80,7 @@ INSERT INTO `users` (`id`, `username`, `name`, `password`) VALUES
 -- Indexes for table `recipes`
 --
 ALTER TABLE `recipes`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Id` (`Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -82,10 +93,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `recipes`
+--
+ALTER TABLE `recipes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

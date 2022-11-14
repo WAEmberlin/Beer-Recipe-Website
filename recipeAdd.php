@@ -33,6 +33,7 @@ if(isset($_POST['btnAddRecipe'])){
    $Ibu = trim($_POST['Ibu']);
    $BrewerNames = trim($_POST['BrewerNames']);
    $Notes = trim($_POST['Notes']);
+   $username =  $_SESSION['uname'];
 
    $isValid = true;
 
@@ -59,9 +60,9 @@ if(isset($_POST['btnAddRecipe'])){
 
    // Insert records
    if($isValid){
-     $insertSQL = "INSERT INTO recipes (rName,Style,Abv,Ibu,BrewerNames,Notes) values(?,?,?,?,?,?)";
+     $insertSQL = "INSERT INTO recipes (username,rName,Style,Abv,Ibu,BrewerNames,Notes) values(?,?,?,?,?,?,?)";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("ssssss",$rName,$Style,$Abv,$Ibu,$BrewerNames,$Notes);
+     $stmt->bind_param("sssssss",$username,$rName,$Style,$Abv,$Ibu,$BrewerNames,$Notes);
      $stmt->execute();
      $stmt->close();
 
@@ -113,29 +114,68 @@ if(isset($_POST['btnAddRecipe'])){
 <!-- NavBar End -->
 
 <!-- Body Start -->
-<?php
-echo "Welcome, " . $_SESSION['uname'] . "!";
-?>
-<br>
-<div class="right">
-<a type="button" class="btn btn-warning btn-lg float-right" href="recipeAdd.php">Add New Recipe</a>
-</div>
+<div class="container-md">
+<form method='post' action='' class="row g-3">
 
-<?php
-$sql = "SELECT username, rName, Style, Abv, Ibu, BrewerNames, Notes FROM recipes";
-$result = $con->query($sql);
+<h1>Add New Recipe</h1>
+    <?php 
+    // Display Error message
+    if(!empty($error_message)){
+    ?>
+    <div class="alert alert-danger">
+      <strong>Error!</strong> <?= $error_message ?>
+    </div>
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<br> Username: ". $row["username"]. " - Recipe Name: ". $row["rName"]. " - Style " . $row["Style"] . " - Abv: ". $row["Abv"]. " - Ibu: ". $row["Ibu"]. " - Brewer Names: ". $row["BrewerNames"]. " - Notes: ". $row["Notes"]. "<br>";
+    <?php
     }
-} else {
-    echo "0 results";
-}
+    ?>
 
-$con->close();
-?>
+    <?php 
+    // Display Success message
+    if(!empty($success_message)){
+    ?>
+    <div class="alert alert-success">
+      <strong>Success!</strong> <?= $success_message ?>
+    </div>
+
+    <?php
+    }
+    ?>
+
+<div class="col-md-6">
+      <label for="rName">Recipe Name:</label>
+      <input type="text" class="form-control" name="rName" id="rName" required="required" maxlength="80">
+    </div>
+<div class="col-md-6">
+      <label for="Style">Style:</label>
+      <input type="text" class="form-control" name="Style" id="Style" required="required" maxlength="80">
+    </div>
+<div class="col-md-6">
+      <label for="Abv">ABV Percentage:</label>
+      <input type="text" class="form-control" name="Abv" id="Abv" required="required" maxlength="80">
+    </div>
+<div class="col-md-6">
+      <label for="Ibu">IBU's:</label>
+      <input type="text" class="form-control" name="Ibu" id="Ibu" required="required" maxlength="80">
+    </div>
+<div class="col-md-6">
+      <label for="BrewerNames">Brewer Names:</label>
+      <input type="text" class="form-control" name="BrewerNames" id="BrewerNames" required="required" maxlength="80">
+    </div>
+<div class="col-md-6">
+      <label for="Notes">Notes:</label>
+      <input type="text" class="form-control" name="Notes" id="Notes" required="required" maxlength="80">
+    </div>
+<br>
+<div class="col-12">
+    <button type="submit" name="btnAddRecipe" class="btn btn-outline-success">Submit</button>
+      <a href="home.php" class="btn btn-outline-danger">Cancel</a>
+    </div>
+
+
+
+  </form>
+</div>
 
 <!-- Body End -->
 
