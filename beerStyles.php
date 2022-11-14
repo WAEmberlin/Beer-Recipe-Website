@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "submit.php";
 
 // Check user login or not
 if(!isset($_SESSION['uname'])){

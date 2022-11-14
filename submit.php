@@ -1,5 +1,15 @@
 <?php
-include "config.php";
+session_start();
+$host = "localhost"; /* Host name */
+$user = "root"; /* User */
+$password = ""; /* Password */
+$dbname = "recipelogin"; /* Database name */
+
+$con = mysqli_connect($host, $user, $password,$dbname);
+// Check connection
+if (!$con) {
+  die("Connection failed: " . mysqli_connect_error());
+}
 
 if(isset($_POST['submitBtn'])){
 
@@ -25,9 +35,3 @@ if(isset($_POST['submitBtn'])){
 
 }
 ?>
-<html>
-<body>
-<br>
-<a href="index.php">Return to Login Page</a>
-</body>
-</html>
