@@ -118,7 +118,7 @@ echo "Welcome, " . $_SESSION['uname'] . "!";
 ?>
 <br>
 <div class="right">
-<a type="button" class="btn btn-warning btn-lg float-right" href="recipeAdd.php">Add New Recipe</a>
+<a type="button" class="btn btn-warning btn-lg" style="float: right;" href="recipeAdd.php">Add New Recipe</a>
 </div>
 
 <?php

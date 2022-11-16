@@ -14,16 +14,17 @@
     <div class="container">
     <form method="post" action="submit.php">
         <div id="div_login">
-            <h1>Brewing Log - Login</h1>
+            <h1>Beer Recipe Log - Login</h1>
             <div>
-                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
+                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" style="margin-left: 10px;"/>
             </div>
             <div>
-                <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password"/>
+                <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password" style="margin-left: 10px;"/>
             </div>
             <div>
                 <button class="btn btn-outline-success" type="submit" value="Submit" name="submitBtn" id="submitBtn">Submit</button>
-                <a class="btn btn-outline-success" href="newAccount.php" style="float: right;">Create New Account</a>
+                <a class="btn btn-outline-info" href="newAccount.php" style="margin-left: 35px;">Create New Account</a>
+                <a class="btn btn-outline-warning" href="resetPassword.php" style="float: right;">Password Reset</a>
             </div>                     
         </div>
     </form>
