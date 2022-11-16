@@ -52,7 +52,7 @@ if(isset($_POST['btnsignup'])){
    if($isValid){
      $insertSQL = "INSERT INTO users (username,fName,lName,password) values(?,?,?,?)";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("ssss",$username,$fName,$lName,$password);
+     $stmt->bind_param("ssss",$username,$fName,$lName,MD5('$password'));
      $stmt->execute();
      $stmt->close();
 
