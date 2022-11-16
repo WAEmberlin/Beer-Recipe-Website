@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 04:53 AM
+-- Generation Time: Nov 16, 2022 at 04:58 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -72,7 +72,8 @@ INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `email`, `password`) VA
 (2, 'wemberlin', 'Wesley', 'Emberlin', 'wesley.a.emberlin@gmail.com', '*DF50B75CB48401512E378AAEB45284BF3A792338'),
 (4, 'BRoss', 'Bob', 'Ross', 'bross@gmail.com', '*86CE1C082FFC4C2CC7D5D9ACF2C767370865FE9E'),
 (5, 'John', 'John', 'John', 'john@john.com', '*F1B33BB9B4E671BFAC0D002725ADF9E504626745'),
-(6, 'Japple', 'Johnny', 'Apple', 'japple@gmail.com', '243e61e9410a9f577d2d662c67025ee9');
+(6, 'Japple', 'Johnny', 'Apple', 'japple@gmail.com', '243e61e9410a9f577d2d662c67025ee9'),
+(7, 'Tom', 'Tom', 'Tom', 'Tom@tom.com', '243e61e9410a9f577d2d662c67025ee9');
 
 --
 -- Indexes for dumped tables
@@ -104,7 +105,7 @@ ALTER TABLE `recipes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
