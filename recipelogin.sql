@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 05:47 AM
+-- Generation Time: Nov 17, 2022 at 04:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,6 +59,7 @@ CREATE TABLE `users` (
   `username` varchar(80) NOT NULL,
   `fName` varchar(80) NOT NULL,
   `lName` varchar(80) NOT NULL,
+  `email` varchar(80) NOT NULL,
   `password` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,11 +67,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `password`) VALUES
-(1, 'aemberlin', 'Austin', 'Emberlin', '*E2837CAF6D0AE8287D882C3EA6192E56FD1DAD1C'),
-(2, 'wemberlin', 'Wesley', 'Emberlin', '*DF50B75CB48401512E378AAEB45284BF3A792338'),
-(4, 'BRoss', 'Bob', 'Ross', '*86CE1C082FFC4C2CC7D5D9ACF2C767370865FE9E'),
-(5, 'John', 'John', 'John', '*F1B33BB9B4E671BFAC0D002725ADF9E504626745');
+INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `email`, `password`) VALUES
+(16, 'aemberlin', 'Austin', 'Emberlin', 'wesley.a.emberlin@gmail.com', '$2y$10$Hl02UfsgUAGKuQIwfJ50seKKltjElyU4ogmVtt3lqT4pGoIuY7sqi'),
+(17, 'wemberlin2', 'Wesley', 'Emberlin', 'wesley.a.emberlin@gmail.co', '$2y$10$gUxJ/rX.FCX2wdoFVrMmAOsebQWlGsePp10igasat9UECjNuf1oFO');
 
 --
 -- Indexes for dumped tables
@@ -102,7 +101,7 @@ ALTER TABLE `recipes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

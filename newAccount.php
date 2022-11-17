@@ -16,13 +16,14 @@ if(isset($_POST['btnsignup'])){
    $username = trim($_POST['username']);
    $fName = trim($_POST['fName']); 
    $lName = trim($_POST['lName']);
+   $email = trim($_POST['email']);
    $password = trim($_POST['password']);
    $confirmpassword = trim($_POST['confirmpassword']);
 
    $isValid = true;
 
    // Check if fields are empty or not
-   if($username == '' || $fName == '' || $lName == '' || $password == '' || $confirmpassword == ''){
+   if($username == '' || $fName == '' || $lName == '' || $email == '' || $password == '' || $confirmpassword == ''){
      $isValid = false;
      $error_message = "Please fill all fields.";
    }
@@ -43,21 +44,38 @@ if(isset($_POST['btnsignup'])){
      $stmt->close();
      if($result->num_rows > 0){
        $isValid = false;
-       $error_message = "Username is already existed.";
+       $error_message = "Username already exists.";
      }
 
    }
 
+   if($isValid){
+
+    // Check if email already exists
+    $stmt = $con->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if($result->num_rows > 0){
+      $isValid = false;
+      $error_message = "Email already exists.";
+    }
+
+  }
+
    // Insert records
    if($isValid){
-     $insertSQL = "INSERT INTO users (username,fName,lName,password) values(?,?,?,?)";
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+     $insertSQL = "INSERT INTO users (username,fName,lName,email,password) values(?,?,?,?,?)";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("ssss",$username,$fName,$lName,MD5('$password'));
+     $stmt->bind_param("sssss",$username,$fName,$lName,$email,$hashedPwd);
      $stmt->execute();
      $stmt->close();
 
      $success_message = "Account created successfully.";
    }
+
 }
 ?>
     </head>
@@ -109,6 +127,10 @@ if(isset($_POST['btnsignup'])){
       <input type="text" class="form-control" name="lName" id="lName" required="required" maxlength="80">
     </div>
     <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="text" class="form-control" name="email" id="email" required="required" maxlength="80">
+    </div>
+    <div class="form-group">
       <label for="password">Password:</label>
       <input type="password" class="form-control" name="password" id="password" required="required" maxlength="80">
     </div>
@@ -118,10 +140,10 @@ if(isset($_POST['btnsignup'])){
     </div>
 <br>
     <button type="submit" name="btnsignup" class="btn btn-outline-success">Submit</button>
+    <a href="index.php" class="btn btn-outline-warning" style="float: right;">Back to Login Page</a>
   </form>
 </div>
 </div>
-    <a href="index.php">Back to Login Page</a>
 </div>
 </body>
 </html>
