@@ -122,14 +122,14 @@ echo "Welcome, " . $_SESSION['uname'] . "!";
 </div>
 
 <?php
-$sql = "SELECT username, rName, Style, Abv, Ibu, BrewerNames, Notes FROM recipes";
+$sql = "SELECT * FROM recipes";
 $result = $con->query($sql);
-
 if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<br> Username: ". $row["username"]. " - Recipe Name: ". $row["rName"]. " - Style " . $row["Style"] . " - Abv: ". $row["Abv"]. " - Ibu: ". $row["Ibu"]. " - Brewer Names: ". $row["BrewerNames"]. " - Notes: ". $row["Notes"]. "<br>";
-    }
+  echo "<table><tr><th>Username - </th><th> Recipe Name - </th><th> Style</th></tr>";
+  while($row = $result->fetch_assoc()) {
+  echo "<tr><td>". $row["username"]. "</td><td>". $row["rName"]. "</td><td>" . $row["Style"] . "</td></tr><br>";
+}
+echo "</table>";
 } else {
     echo "0 results";
 }
