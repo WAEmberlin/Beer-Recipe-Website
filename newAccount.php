@@ -66,14 +66,16 @@ if(isset($_POST['btnsignup'])){
 
    // Insert records
    if($isValid){
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
      $insertSQL = "INSERT INTO users (username,fName,lName,email,password) values(?,?,?,?,?)";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("sssss",$username,$fName,$lName,$email,MD5('$password'));
+     $stmt->bind_param("sssss",$username,$fName,$lName,$email,$hashedPwd);
      $stmt->execute();
      $stmt->close();
 
      $success_message = "Account created successfully.";
    }
+
 }
 ?>
     </head>
@@ -138,10 +140,10 @@ if(isset($_POST['btnsignup'])){
     </div>
 <br>
     <button type="submit" name="btnsignup" class="btn btn-outline-success">Submit</button>
+    <a href="index.php" class="btn btn-outline-warning" style="float: right;">Back to Login Page</a>
   </form>
 </div>
 </div>
-    <a href="index.php">Back to Login Page</a>
 </div>
 </body>
 </html>
