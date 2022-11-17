@@ -18,13 +18,13 @@ if(isset($_POST['submitBtn'])){
 
     if ($uname != "" && $password != ""){
 
-        $sql_query = "select count(*) as cntUser from users where username='".$uname."' and password='".$password."'";
+        $sql_query = "SELECT password FROM users where username='".$uname."'";
         $result = mysqli_query($con,$sql_query);
         $row = mysqli_fetch_array($result);
 
-        $count = $row['cntUser'];
-
-        if($count > 0){
+        $PwdHashed = $row['password'];
+        $checkPwd = password_verify($password, $PwdHashed);
+        if($checkPwd === true){
             $_SESSION['uname'] = $uname;
             header('Location: home.php');
         }else{
