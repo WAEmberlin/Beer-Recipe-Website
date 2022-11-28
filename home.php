@@ -120,8 +120,9 @@ echo "Welcome, " . $_SESSION['uname'] . "!";
 <div class="right">
 <a type="button" class="btn btn-warning btn-lg" style="float: right;" href="recipeAdd.php">Add New Recipe</a>
 </div>
-
+<div>
 <?php
+//Results displayed using PHP
 $sql = "SELECT * FROM recipes";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
@@ -134,8 +135,34 @@ echo "</table>";
     echo "0 results";
 }
 
-$con->close();
 ?>
+</div>
+
+
+<?php
+//Recipe query and array placement
+$recipeResult = mysqli_query($con, $sql);
+$recipeJsonArray = array();
+while($row = mysqli_fetch_assoc($recipeResult)){
+  $recipeJsonArray[] = $row;
+}
+
+?>
+<table><tr><th>Username - Recipe Name - Style</th></tr>
+<tr id="recipeList">
+</tr>
+</table>
+<script>
+    //convert data to JSON and display in a table
+var recipes = <?php echo json_encode($recipeJsonArray); ?>;
+var mainContainer = document.getElementById("recipeList");
+var arrayLength = recipes.length;
+    for (var i = 0; i < arrayLength; i++) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = recipes[i].username + ' - ' + recipes[i].rName + ' - ' + recipes[i].Style;
+    mainContainer.appendChild(tr);
+}
+</script>
 
 <!-- Body End -->
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 04:40 AM
+-- Generation Time: Nov 28, 2022 at 11:25 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -46,7 +46,8 @@ CREATE TABLE `recipes` (
 INSERT INTO `recipes` (`id`, `username`, `rName`, `Style`, `Abv`, `Ibu`, `BrewerNames`, `Notes`, `Date`) VALUES
 (1, 'wemberlin', 'Buffalo Wheat', 'American Wheat Ale', 6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-11'),
 (2, 'aemberlin', 'Buffalo Wheat 2', 'American Wheat Ale', 5.6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-12'),
-(3, 'wemberlin', 'Pale Buffalo', 'American Pale Ale', 7.6, 44, 'Austin Emberlin and John Johnson', 'Crushable Summertime Beer', '2022-11-13');
+(3, 'wemberlin', 'Pale Buffalo', 'American Pale Ale', 7.6, 44, 'Austin Emberlin and John Johnson', 'Crushable Summertime Beer', '2022-11-13'),
+(4, 'aemberlin', 'Abilene Belgian Ale', 'Belgian Style Ale', 6.2, 36, 'Austin Emberlin and Chuck Norris', 'Cascade Hops', '2022-11-28');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `email`, `password`) VALUES
 (16, 'aemberlin', 'Austin', 'Emberlin', 'wesley.a.emberlin@gmail.com', '$2y$10$Hl02UfsgUAGKuQIwfJ50seKKltjElyU4ogmVtt3lqT4pGoIuY7sqi'),
-(17, 'wemberlin2', 'Wesley', 'Emberlin', 'wesley.a.emberlin@gmail.co', '$2y$10$gUxJ/rX.FCX2wdoFVrMmAOsebQWlGsePp10igasat9UECjNuf1oFO');
+(17, 'wemberlin', 'Wesley', 'Emberlin', 'wesley.a.emberlin@gmail.co', '$2y$10$gUxJ/rX.FCX2wdoFVrMmAOsebQWlGsePp10igasat9UECjNuf1oFO');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +96,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
