@@ -16,7 +16,8 @@ if(isset($_POST['but_logout'])){
 <html>
     <head>
     <title>Beer Recipe Log</title>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="secondary.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
@@ -120,27 +121,11 @@ echo "Welcome, " . $_SESSION['uname'] . "!";
 <div class="right">
 <a type="button" class="btn btn-warning btn-lg" style="float: right;" href="recipeAdd.php">Add New Recipe</a>
 </div>
+<br><br>
 <div>
 <?php
-//Results displayed using PHP
-$sql = "SELECT * FROM recipes";
-$result = $con->query($sql);
-if ($result->num_rows > 0) {
-  echo "<table><tr><th>Username - </th><th> Recipe Name - </th><th> Style</th></tr>";
-  while($row = $result->fetch_assoc()) {
-  echo "<tr><td>". $row["username"]. "</td><td>". $row["rName"]. "</td><td>" . $row["Style"] . "</td></tr><br>";
-}
-echo "</table>";
-} else {
-    echo "0 results";
-}
-
-?>
-</div>
-
-
-<?php
 //Recipe query and array placement
+$sql = "SELECT * FROM recipes";
 $recipeResult = mysqli_query($con, $sql);
 $recipeJsonArray = array();
 while($row = mysqli_fetch_assoc($recipeResult)){
@@ -148,22 +133,47 @@ while($row = mysqli_fetch_assoc($recipeResult)){
 }
 
 ?>
-<table><tr><th>Username - Recipe Name - Style</th></tr>
-<tr id="recipeList">
-</tr>
+<div class="container mt-3">
+<table class="table table-bordered">
+  <thread>
+    <tr>
+      <th>Username</th>
+      <th>Recipe Name</th>
+      <th>Style</th>
+    </tr>
+</thread>
+<tbody id="recipeList">
+  
+</tbody>
 </table>
+
 <script>
     //convert data to JSON and display in a table
 var recipes = <?php echo json_encode($recipeJsonArray); ?>;
-var mainContainer = document.getElementById("recipeList");
 var arrayLength = recipes.length;
+
     for (var i = 0; i < arrayLength; i++) {
-    var tr = document.createElement("tr");
-    tr.innerHTML = recipes[i].username + ' - ' + recipes[i].rName + ' - ' + recipes[i].Style;
-    mainContainer.appendChild(tr);
+    var recipeTable = document.getElementById("recipeList");
+    var row = document.createElement("tr");
+
+    for (var j = 0; j < 1; j++) {
+    var cell1 = document.createElement("td");
+    cell1.innerHTML = recipes[i].username;
+    row.appendChild(cell1);
+
+    var cell2  =  document.createElement('td');
+    cell2.innerHTML = recipes[i].rName;
+    row.appendChild(cell2);
+
+    var cell3  =  document.createElement('td');
+    cell3.innerHTML = recipes[i].Style;
+    row.appendChild(cell3);
+  }
+recipeTable.appendChild(row);
 }
 </script>
-
+</div>
+</div>
 <!-- Body End -->
 
 
