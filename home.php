@@ -22,54 +22,8 @@ if(isset($_POST['but_logout'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">  
-    <script src="/recipeLog/forms.js"></script>   
-<?php 
-$error_message = "";$success_message = "";
-
-// Add New Recipe
-if(isset($_POST['btnAddRecipe'])){
-   $rName = trim($_POST['rName']);
-   $Style = trim($_POST['Style']); 
-   $Abv = trim($_POST['Abv']);
-   $Ibu = trim($_POST['Ibu']);
-   $BrewerNames = trim($_POST['BrewerNames']);
-   $Notes = trim($_POST['Notes']);
-
-   $isValid = true;
-
-   // Check if fields are empty or not
-   if($rName == '' || $Style == '' || $Abv == '' || $Ibu == '' || $BrewerNames == '' || $Notes == ''){
-     $isValid = false;
-     $error_message = "Please fill all fields.";
-   }
-
-   if($isValid){
-
-     // Check if recipe name already exists
-     $stmt = $con->prepare("SELECT * FROM recipes WHERE rName = ?");
-     $stmt->bind_param("s", $rName);
-     $stmt->execute();
-     $result = $stmt->get_result();
-     $stmt->close();
-     if($result->num_rows > 0){
-       $isValid = false;
-       $error_message = "Recipe name is already existed.";
-     }
-
-   }
-
-   // Insert records
-   if($isValid){
-     $insertSQL = "INSERT INTO recipes (rName,Style,Abv,Ibu,BrewerNames,Notes) values(?,?,?,?,?,?)";
-     $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("ssssss",$rName,$Style,$Abv,$Ibu,$BrewerNames,$Notes);
-     $stmt->execute();
-     $stmt->close();
-
-     $success_message = "Recipe created successfully.";
-   }
-}
-?>
+    <script src="forms.js"></script>   
+    <script src="script.js"></script>
   </head>
 <body>
     <!-- NavBar Start-->
