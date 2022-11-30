@@ -16,14 +16,15 @@ if(isset($_POST['but_logout'])){
 <html>
     <head>
     <title>Beer Recipe Log</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
-        <link rel="stylesheet" type="text/css" href="secondary.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">  
     <script src="forms.js"></script>   
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   </head>
 <body onload="javascript:getName()">
 
@@ -109,7 +110,6 @@ echo "Username: " . $_SESSION['uname'];
 	</div>
 </div>
 
-
 <!-- Body End -->
 
 
@@ -118,7 +118,7 @@ echo "Username: " . $_SESSION['uname'];
     <!-- Grid container -->
   <div class="container p-4 pb-0 text-center"><hr>
     <!-- Section: Social media -->
-    <section class="mb-4">
+    <section>
       <!-- Facebook -->
       <a
         class="btn text-white btn-floating m-1"
@@ -156,8 +156,7 @@ echo "Username: " . $_SESSION['uname'];
     </section>
     <!-- Section: Social media -->
   </div>
-  <!-- Grid container -->
-
+ 
   <!-- Copyright -->
   <div class="text-center p-3 text-white" style="background-color: #2e302f;">
     © 2022 Copyright: Austin Emberlin with
