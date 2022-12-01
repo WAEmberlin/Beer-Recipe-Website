@@ -7,9 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
     </head>
-<body>
+<body class="bgcolor">
     <div>
-        <img src="photos/BP_Logo.jpg" alt="Logo" width="125" height="100">
+        <img src="photos/BP_Logo.png" alt="Logo" width="105" height="100">
     </div>
     <div class="container">
     <form method="post" action="submit.php">

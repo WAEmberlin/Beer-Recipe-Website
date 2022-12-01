@@ -30,3 +30,21 @@ function photoChange(){
   document.getElementById("photo").src = "photos/blueScreen.gif";
   alert("ERROR! A Virus has been detected!");
 }
+
+// Initialize and add the map
+function initMap() {
+  // The location of Bison Prairie Brewing
+  const bpbrewing = { lat: 38.91619, lng: -97.22896 };
+  // The map, centered at Bison Prairie Brewing
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 10,
+    center: bpbrewing,
+  });
+  // The marker, positioned at Bison Prairie Brewing
+  const marker = new google.maps.Marker({
+    position: bpbrewing,
+    map: map,
+  });
+}
+
+window.initMap = initMap;
