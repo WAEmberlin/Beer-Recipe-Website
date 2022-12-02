@@ -21,7 +21,7 @@ if(isset($_POST['but_logout'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">  
-    <script type="text/javascript" src="forms.js"></script>   
+    <script type="text/javascript" src="script.js"></script>   
 <?php 
 $error_message = "";$success_message = "";
 
@@ -75,7 +75,7 @@ if(isset($_POST['btnAddRecipe'])){
     <!-- NavBar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="home.php"><img src="photos/BP_Logo.png" alt="Logo" width="105" height="100"></a>
+    <a class="navbar-brand" href="home.php"><img src="photos/BP_Logo.jpg" alt="Logo" width="125" height="100"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -142,24 +142,10 @@ if(isset($_POST['btnAddRecipe'])){
     }
     ?>
 
-<script>
-  //counts number of charaters.
-function countCharacters(obj){
-    var maxLength = 80;
-    var stringLength = obj.value.length;
-    
-    if(stringLength > maxLength){
-        document.getElementById("charNum").innerHTML = '<span style="color: red;">'+stringLength+' out of '+maxLength+' characters</span>';
-    }else{
-        document.getElementById("charNum").innerHTML = stringLength+' out of '+maxLength+' characters';
-    }
-}
-  </script>
-
 <div class="col-md-6">
       <label for="rName">Recipe Name:</label>
-      <input type="text" class="form-control" name="rName" id="rName" required="required" maxlength="80" onkeyup="countCharacters(this);">
-      <span id="charNum">0 characters</span>
+      <input type="text" class="form-control" name="rName" id="rName" required="required" maxlength="80" onkeyup="countCharacters(rName, 'rNameCharacterCount', 80);">
+      <span id="rNameCharacterCount">0 characters</span>
     </div>
 <div class="col-md-6">
       <label for="Style">Style:</label>
