@@ -9,7 +9,7 @@
     </head>
 <body class="bgcolor">
     <div>
-        <img src="photos/BP_Logo.png" alt="Logo" width="105" height="100">
+        <img src="photos/BP_Logo.jpg" alt="Logo" width="125" height="100">
     </div>
     <div class="container">
     <form method="post" action="submit.php">

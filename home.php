@@ -28,7 +28,7 @@ if(isset($_POST['but_logout'])){
     <!-- NavBar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="home.php"><img src="photos/BP_Logo.png" alt="Logo" width="105" height="100"></a>
+    <a class="navbar-brand" href="home.php"><img src="photos/BP_Logo.jpg" alt="Logo" width="125" height="100"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -101,6 +101,10 @@ while($row = mysqli_fetch_assoc($recipeResult)){
       <th>Username</th>
       <th>Recipe Name</th>
       <th>Style</th>
+      <th>ABV %</th>
+      <th>IBU</th>
+      <th>Notes</th>
+      <th>Brewer</th>
     </tr>
 </thread>
 <tbody id="recipeList">
@@ -129,6 +133,22 @@ var arrayLength = recipes.length;
     var cell3  =  document.createElement('td');
     cell3.innerHTML = recipes[i].Style;
     row.appendChild(cell3);
+
+    var cell4  =  document.createElement('td');
+    cell4.innerHTML = recipes[i].Abv;
+    row.appendChild(cell4);
+
+    var cell5  =  document.createElement('td');
+    cell5.innerHTML = recipes[i].Ibu;
+    row.appendChild(cell5);
+
+    var cell6  =  document.createElement('td');
+    cell6.innerHTML = recipes[i].Notes;
+    row.appendChild(cell6);
+
+    var cell7  =  document.createElement('td');
+    cell7.innerHTML = recipes[i].BrewerNames;
+    row.appendChild(cell7);
   }
 recipeTable.appendChild(row);
 }

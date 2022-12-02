@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 11:25 PM
+-- Generation Time: Dec 02, 2022 at 04:41 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,7 +47,8 @@ INSERT INTO `recipes` (`id`, `username`, `rName`, `Style`, `Abv`, `Ibu`, `Brewer
 (1, 'wemberlin', 'Buffalo Wheat', 'American Wheat Ale', 6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-11'),
 (2, 'aemberlin', 'Buffalo Wheat 2', 'American Wheat Ale', 5.6, 22, 'Austin Emberlin and Bob Ross', 'Delicious Summertime Beer', '2022-11-12'),
 (3, 'wemberlin', 'Pale Buffalo', 'American Pale Ale', 7.6, 44, 'Austin Emberlin and John Johnson', 'Crushable Summertime Beer', '2022-11-13'),
-(4, 'aemberlin', 'Abilene Belgian Ale', 'Belgian Style Ale', 6.2, 36, 'Austin Emberlin and Chuck Norris', 'Cascade Hops', '2022-11-28');
+(4, 'aemberlin', 'Abilene Belgian Ale', 'Belgian Style Ale', 6.2, 36, 'Austin Emberlin and Chuck Norris', 'Cascade Hops', '2022-11-28'),
+(5, 'aemberlin', 'Smoking Hoppy Jalapeno', 'Black IPA', 7.3, 42, 'Austin Emberlin', 'Spicy, Hoppy, Dark, and Delicious', '2022-12-01');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
