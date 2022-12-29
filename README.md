@@ -9,6 +9,9 @@ More content will be added and will be made to look much better than it is curre
 I plan to add the ability to add more information for each recipe. I also need to get the search function working. Adding a way to comment on receipes and rate them would be a great future addition as well.
 
 This project uses HTML, CSS, Bootstrap, JavaScript, PHP, and MariaDB. I used XAMPP for local hosting while creating this project. 
+I learned a lot about PHP and connecting to databases to frontend forms while working on this project. 
+I have found I really enjoy the backend of web development much more than the front end.
+
 You can download the files and place them into your htdocs folder for XAMPP to get the website to work. 
 You will need to go into PHPMyAdmin as well and upload the SQL file to MariaDB. 
 
